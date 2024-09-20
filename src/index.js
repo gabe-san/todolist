@@ -1,5 +1,17 @@
-function test() {
-  const person = 'Alan';
-  console.log(person);
-}
-test();
+import initializeAddListener from './Eventlisteners';
+import './style.css'
+import { renderInitialForms } from './TaskDOM';
+
+renderInitialForms();
+initializeAddListener();
+
+
+
+
+
+
+
+
+
+
+

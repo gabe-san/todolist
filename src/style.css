@@ -2,7 +2,42 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: #36393e;
+  color: white;
 }
 body {
   min-height: 100vh;
+}
+ul {
+  list-style-type: none;
+}
+.content {
+  display: flex;
+  gap: 50px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  background-color: #36393e00;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.add-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.add-projects > div {
+  font-size: 0.9em;
 }
