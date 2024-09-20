@@ -1,11 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskr</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="content">
+      <div class="sidebar">
+        <nav>
+          <ul class="navigation">
+            <li><button class="showAllTasks">Inbox</button></li>
+            <li><button class="showTodayTasks">Today</button></li>
+            <li><button class="showTasksWeek">Upcoming</button></li>
+          </ul>
+        </nav>
+        <div class="projectContainer">
+          <button class="add-projects">My Projects</button>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main">
+          <button class="add-task-btn">Add Task</button>
+        </div>
+        <div class="taskDisplay"></div>
+      </div>
+    </div>
+  </body>
 </html>
