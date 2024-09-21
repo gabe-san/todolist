@@ -80,4 +80,4 @@ export default function initializeAddListeners() {
   });
 };
 
-// STUFF LEFT TO DO: DELETE PROJECT, LOCAL STORAGE, STYLING
+// LOCAL STORAGE, STYLING

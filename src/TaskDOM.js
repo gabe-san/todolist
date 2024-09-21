@@ -51,6 +51,17 @@ function createTask(TaskItem) {
 function createProject(ProjectName) {
   const projectAnchor = document.querySelector('.projectDisplay');
   const projectButton = document.createElement('button');
+  projectButton.addEventListener('dblclick', () => {
+    projectButton.remove();
+    const index = ProjectControl.projectNameList.findIndex(project => project.id === ProjectName.id);
+    console.log(ProjectName.projectTitle);
+    ProjectControl.removeProject(index);
+    console.log(ProjectControl.projectNameList);
+    // eslint-disable-next-line no-use-before-define
+    addDropDown();
+    // eslint-disable-next-line no-use-before-define
+    updateAllToDo();
+  })
   projectButton.textContent = ProjectName.projectTitle;
   projectButton.setAttribute('id', `${ProjectName.projectTitle}`);
   projectAnchor.appendChild(projectButton);
@@ -81,9 +92,13 @@ function renderInitialForms() {
   projectFormReset.setAttribute('type', 'reset');
   projectFormReset.textContent = 'R';
 
+  const projectInformationDelete = document.createElement('div');
+  projectInformationDelete.textContent = 'Doubleclick to delete';
+
   projectForm.appendChild(projectTitle);
   projectForm.appendChild(projectFormSubmit);
   projectForm.appendChild(projectFormReset);
+  projectForm.appendChild(projectInformationDelete);
   addProjectButton.appendChild(projectForm);
 
   // To Do Details Form

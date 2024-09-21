@@ -1,5 +1,8 @@
 export default class Project {
+  static lastId = 0
+
   constructor(projectTitle) {
+    this.id = ++Project.lastId;
     this.projectTitle = projectTitle;
     this.projectTaskList = [];
   }
