@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-restricted-globals */
 import ProjectControl from './ProjectManager';
 import { addDropDown, addToDoItemFromDOM, createProject, createTask, updateAllToDo, updateProjectSpecificToDo, updateTodayAllToDo, updateUpcomingToDo } from './TaskDOM';
@@ -57,9 +58,11 @@ export default function initializeAddListeners() {
     taskDisplay.innerHTML = '';
     const item = addToDoItemFromDOM();
     createTask(item);
+
     const projectArray = ProjectControl.projectNameList;
     const toDoTarget = projectArray.filter(project => project.projectTitle === item.project);
     toDoTarget[0].addToDo(item);
+    updateAllToDo();
   });
 
   const submitProjectButton = document.querySelector('.projectContainer');
@@ -77,3 +80,4 @@ export default function initializeAddListeners() {
   });
 };
 
+// STUFF LEFT TO DO: DELETE PROJECT, LOCAL STORAGE, STYLING

@@ -9,8 +9,10 @@ function createTask(TaskItem) {
   const body = document.querySelector('.taskDisplay');
 
   const taskItem = document.createElement('div');
+  taskItem.classList.add(`${TaskItem.id}`);
 
   const title = document.createElement('div');
+  title.classList.add('taskName');
   title.textContent = TaskItem.title;
 
   const description = document.createElement('div');
@@ -23,13 +25,26 @@ function createTask(TaskItem) {
   priority.textContent = TaskItem.priority;
 
   const project = document.createElement('div');
+  project.classList.add(`${TaskItem.id}`);
   project.textContent = TaskItem.project;
+
+  const deleteButton = document.createElement('button');
+  deleteButton.addEventListener('click', () => {
+    taskItem.remove();
+    const projectArray = ProjectControl.projectNameList;
+    const projectTarget = projectArray.filter(projects => projects.projectTitle === TaskItem.project);
+    const index = projectTarget.findIndex(object => object.id === TaskItem.id);
+    projectTarget[0].removeToDo(index);
+  })
+  deleteButton.textContent = 'Delete';
+
 
   taskItem.appendChild(title);
   taskItem.appendChild(description);
   taskItem.appendChild(dueDate);
   taskItem.appendChild(priority);
   taskItem.appendChild(project);
+  taskItem.appendChild(deleteButton);
   body.appendChild(taskItem);
 }
 
@@ -202,7 +217,7 @@ function updateUpcomingToDo() {
   taskDisplay.innerHTML = '';
   const projectManagerArray = ProjectControl.projectNameList;
   const filterDate = format(new UTCDate(), 'MM/dd/yyyy');
-  const newArray = projectManagerArray.map(project => project.projectTaskList).flat(Infinity).filter((toDo) => toDo.dueDate >= filterDate);
+  const newArray = projectManagerArray.map(project => project.projectTaskList).flat(Infinity).filter((toDo) => toDo.dueDate > filterDate);
   newArray.forEach((toDoObject) => {
     createTask(toDoObject)
   })
