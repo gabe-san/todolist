@@ -5,6 +5,27 @@ import ProjectControl from './ProjectManager';
 import ToDoItem from './ToDo';
 
 // DYNAMIC ELEMENTS
+
+/* 
+let previousProjectControlObject = JSON.parse(localStorage.getItem(ProjectControl))
+if (previousProjectControlObject does not exist) {
+ use exported default ProjectControl object to store projects and to do
+} 
+*/
+
+function saveToStorage(object) {
+  localStorage.setItem('ProjectControl', JSON.stringify(object));
+}
+
+function loadFromStorage(objectkey) {
+  const sessionData = localStorage.getItem(objectkey);
+  if (sessionData !== null) {
+    const parsedSessionData = JSON.parse(sessionData);
+    Object.assign(ProjectControl, parsedSessionData);
+  }
+  return false
+}
+
 function createTask(TaskItem) {
   const body = document.querySelector('.taskDisplay');
 
@@ -29,15 +50,15 @@ function createTask(TaskItem) {
   project.textContent = TaskItem.project;
 
   const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'Delete';
   deleteButton.addEventListener('click', () => {
     taskItem.remove();
     const projectArray = ProjectControl.projectNameList;
     const projectTarget = projectArray.filter(projects => projects.projectTitle === TaskItem.project);
     const index = projectTarget.findIndex(object => object.id === TaskItem.id);
     projectTarget[0].removeToDo(index);
+    saveToStorage(ProjectControl);
   })
-  deleteButton.textContent = 'Delete';
-
 
   taskItem.appendChild(title);
   taskItem.appendChild(description);
@@ -54,9 +75,8 @@ function createProject(ProjectName) {
   projectButton.addEventListener('dblclick', () => {
     projectButton.remove();
     const index = ProjectControl.projectNameList.findIndex(project => project.id === ProjectName.id);
-    console.log(ProjectName.projectTitle);
     ProjectControl.removeProject(index);
-    console.log(ProjectControl.projectNameList);
+    saveToStorage(ProjectControl);
     // eslint-disable-next-line no-use-before-define
     addDropDown();
     // eslint-disable-next-line no-use-before-define
@@ -206,6 +226,14 @@ function addDropDown() {
   })
 }
 
+function updateProjectDOMDisplay() {
+  const projectDisplay = document.querySelector('.projectDisplay');
+  projectDisplay.innerHTML = '';
+  const projectManagerArray = ProjectControl.projectNameList;
+  projectManagerArray.forEach((arrayObject) => {
+    createProject(arrayObject);
+  })
+}
 function updateAllToDo() {
   const taskDisplay = document.querySelector('.taskDisplay');
   taskDisplay.innerHTML = '';
@@ -249,4 +277,4 @@ function updateProjectSpecificToDo() {
 }
 
 
-export { updateProjectSpecificToDo, updateUpcomingToDo, updateTodayAllToDo, updateAllToDo, addToDoItemFromDOM, createTask, createProject, renderInitialForms, addDropDown };
+export { updateProjectSpecificToDo, updateUpcomingToDo, updateTodayAllToDo, updateAllToDo, addToDoItemFromDOM, createTask, createProject, renderInitialForms, addDropDown, loadFromStorage, saveToStorage, updateProjectDOMDisplay };

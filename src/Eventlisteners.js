@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-restricted-globals */
 import ProjectControl from './ProjectManager';
-import { addDropDown, addToDoItemFromDOM, createProject, createTask, updateAllToDo, updateProjectSpecificToDo, updateTodayAllToDo, updateUpcomingToDo } from './TaskDOM';
+import { addDropDown, addToDoItemFromDOM, createProject, createTask, saveToStorage, updateAllToDo, updateProjectDOMDisplay, updateProjectSpecificToDo, updateTodayAllToDo, updateUpcomingToDo } from './TaskDOM';
 
 export default function initializeAddListeners() {
   // STATIC BUTTONS
@@ -9,12 +9,15 @@ export default function initializeAddListeners() {
   addTaskButton.addEventListener('click', () => {
     const formAnchor = document.querySelector('.taskFormToggle');
     formAnchor.style.display = '';
+    updateAllToDo();
   });
 
   const addProjectButton = document.querySelector('.add-projects');
   addProjectButton.addEventListener('click', () => {
     const formAnchor = document.querySelector('.projectFormToggle');
     formAnchor.style.display = '';
+    updateProjectDOMDisplay();
+    addDropDown();
   });
 
   const inboxButton = document.querySelector('.showAllTasks');
@@ -62,6 +65,7 @@ export default function initializeAddListeners() {
     const projectArray = ProjectControl.projectNameList;
     const toDoTarget = projectArray.filter(project => project.projectTitle === item.project);
     toDoTarget[0].addToDo(item);
+    saveToStorage(ProjectControl);
     updateAllToDo();
   });
 
@@ -71,13 +75,16 @@ export default function initializeAddListeners() {
     event.preventDefault();
     const projectInput = document.querySelector('#projectTitle');
     const projectNameInput = document.querySelector('#projectTitle').value;
+
     const project = ProjectControl.newProject(projectNameInput);
     if (projectInput.value === '') {
       return false
     }
     createProject(project)
+    saveToStorage(ProjectControl);
     addDropDown();
   });
+
 };
 
 // LOCAL STORAGE, STYLING
