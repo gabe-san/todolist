@@ -64,7 +64,7 @@ export default function initializeAddListeners() {
 
     const projectArray = ProjectControl.projectNameList;
     const toDoTarget = projectArray.filter(project => project.projectTitle === item.project);
-    toDoTarget[0].addToDo(item);
+    toDoTarget[0].projectTaskList.push(item);
     saveToStorage(ProjectControl);
     updateAllToDo();
   });
@@ -75,7 +75,6 @@ export default function initializeAddListeners() {
     event.preventDefault();
     const projectInput = document.querySelector('#projectTitle');
     const projectNameInput = document.querySelector('#projectTitle').value;
-
     const project = ProjectControl.newProject(projectNameInput);
     if (projectInput.value === '') {
       return false
@@ -87,4 +86,4 @@ export default function initializeAddListeners() {
 
 };
 
-// LOCAL STORAGE, STYLING
+// STYLING

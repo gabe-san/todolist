@@ -19,11 +19,13 @@ function saveToStorage(object) {
 
 function loadFromStorage(objectkey) {
   const sessionData = localStorage.getItem(objectkey);
-  if (sessionData !== null) {
+  if (sessionData) {
     const parsedSessionData = JSON.parse(sessionData);
     Object.assign(ProjectControl, parsedSessionData);
+  } else {
+    console.log('Object not found');
   }
-  return false
+
 }
 
 function createTask(TaskItem) {
@@ -56,7 +58,7 @@ function createTask(TaskItem) {
     const projectArray = ProjectControl.projectNameList;
     const projectTarget = projectArray.filter(projects => projects.projectTitle === TaskItem.project);
     const index = projectTarget.findIndex(object => object.id === TaskItem.id);
-    projectTarget[0].removeToDo(index);
+    projectTarget[0].projectTaskList.splice(index, 1);
     saveToStorage(ProjectControl);
   })
 

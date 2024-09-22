@@ -6,7 +6,7 @@ renderInitialForms();
 initializeAddListener();
 
 const jsonKey = 'ProjectControl';
-loadFromStorage(jsonKey);
+window.onload = loadFromStorage(jsonKey);
 
 
 
