@@ -1,7 +1,7 @@
-# INSERT PROJECT TITLE
+# TO DO LIST
 
-Link: _Available later_  
-Include project description and use case. List tech stack and other technologies used.
+Link: (https://gabe-san.github.io/todolist/)
+Basic To Do List application using vanilla JS and HTML/CSS.
 
 > **Use as future project template for ESLint/Prettier and Webpack.**
 
