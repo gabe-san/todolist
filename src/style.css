@@ -2,8 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #36393e;
-  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 body {
   min-height: 100vh;
@@ -13,17 +12,50 @@ ul {
 }
 .content {
   display: flex;
-  gap: 50px;
+  height: 100vh;
+  width: 100vw;
 }
 
 .sidebar {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
+  padding: 2rem;
+  width: 20vw;
   align-items: center;
-  gap: 50px;
-  background-color: #36393e00;
+  gap: 30px;
+  background-color: #2d3033;
 }
 
+.navigation button,
+.add-projects,
+.projectDisplay button {
+  width: 18vw;
+  padding: 2px;
+  color: white;
+  background-color: #2d3033;
+  border: none;
+  font-size: 1rem;
+}
+
+.navigation button:hover,
+.add-projects:hover,
+.projectDisplay button:hover {
+  background-color: #3c4043;
+}
+
+.navigation button:focus,
+.projectDisplay button:focus {
+  background-color: rgb(245, 97, 97);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100vw;
+  padding: 2rem;
+  background-color: #36393e;
+}
 .navigation {
   display: flex;
   flex-direction: column;
@@ -32,12 +64,60 @@ ul {
   align-items: center;
 }
 
+.projectContainer {
+  display: flex;
+  flex-direction: column;
+}
 .add-projects {
   display: flex;
   flex-direction: column;
   gap: 15px;
   align-items: center;
+  flex: auto;
 }
+
 .add-projects > div {
   font-size: 0.9em;
+}
+
+.projectDisplay {
+  display: flex;
+  flex-direction: column;
+}
+
+.projectFormToggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.submitProjectBtn,
+.resetProjectBtn {
+  width: 10vw;
+  color: white;
+  background-color: rgb(245, 97, 97);
+  border: none;
+}
+.submitProjectBtn:active,
+.resetProjectBtn:active {
+  background-color: rgb(245, 40, 40);
+}
+
+.projectFormToggle div {
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: -20px;
+  width: 19vw;
+}
+
+.projectFormToggle input {
+  background-color: #2d3033;
+  border: 1px solid rgb(229, 231, 235, 0.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: white;
+  width: 19vw;
 }

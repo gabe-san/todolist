@@ -1,6 +1,7 @@
 import initializeAddListener from './Eventlisteners';
 import './style.css'
-import { loadFromStorage, renderInitialForms } from './TaskDOM';
+import { renderInitialForms } from './TaskDOM';
+import { loadFromStorage } from './localstorage';
 
 renderInitialForms();
 initializeAddListener();

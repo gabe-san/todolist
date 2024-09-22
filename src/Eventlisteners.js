@@ -1,12 +1,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-restricted-globals */
+import { saveToStorage } from './localstorage';
 import ProjectControl from './ProjectManager';
-import { addDropDown, addToDoItemFromDOM, createProject, createTask, saveToStorage, updateAllToDo, updateProjectDOMDisplay, updateProjectSpecificToDo, updateTodayAllToDo, updateUpcomingToDo } from './TaskDOM';
+import { addDropDown, addToDoItemFromDOM, createProject, createTask, updateAllToDo, updateProjectDOMDisplay, updateProjectSpecificToDo, updateTodayAllToDo, updateUpcomingToDo } from './TaskDOM';
 
 export default function initializeAddListeners() {
   // STATIC BUTTONS
   const addTaskButton = document.querySelector('.add-task-btn');
   addTaskButton.addEventListener('click', () => {
+    addTaskButton.style.visibility = 'hidden';
     const formAnchor = document.querySelector('.taskFormToggle');
     formAnchor.style.display = '';
     updateAllToDo();
@@ -15,6 +17,7 @@ export default function initializeAddListeners() {
   const addProjectButton = document.querySelector('.add-projects');
   addProjectButton.addEventListener('click', () => {
     const formAnchor = document.querySelector('.projectFormToggle');
+    addProjectButton.style.visibility = 'hidden';
     formAnchor.style.display = '';
     updateProjectDOMDisplay();
     addDropDown();
@@ -83,7 +86,4 @@ export default function initializeAddListeners() {
     saveToStorage(ProjectControl);
     addDropDown();
   });
-
 };
-
-// STYLING

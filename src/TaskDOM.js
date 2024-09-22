@@ -1,36 +1,14 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-restricted-globals */
 import { UTCDate } from '@date-fns/utc';
 import { format } from 'date-fns';
 import ProjectControl from './ProjectManager';
 import ToDoItem from './ToDo';
+import { saveToStorage } from './localstorage';
 
 // DYNAMIC ELEMENTS
-
-/* 
-let previousProjectControlObject = JSON.parse(localStorage.getItem(ProjectControl))
-if (previousProjectControlObject does not exist) {
- use exported default ProjectControl object to store projects and to do
-} 
-*/
-
-function saveToStorage(object) {
-  localStorage.setItem('ProjectControl', JSON.stringify(object));
-}
-
-function loadFromStorage(objectkey) {
-  const sessionData = localStorage.getItem(objectkey);
-  if (sessionData) {
-    const parsedSessionData = JSON.parse(sessionData);
-    Object.assign(ProjectControl, parsedSessionData);
-  } else {
-    console.log('Object not found');
-  }
-
-}
-
 function createTask(TaskItem) {
   const body = document.querySelector('.taskDisplay');
-
   const taskItem = document.createElement('div');
   taskItem.classList.add(`${TaskItem.id}`);
 
@@ -79,16 +57,13 @@ function createProject(ProjectName) {
     const index = ProjectControl.projectNameList.findIndex(project => project.id === ProjectName.id);
     ProjectControl.removeProject(index);
     saveToStorage(ProjectControl);
-    // eslint-disable-next-line no-use-before-define
     addDropDown();
-    // eslint-disable-next-line no-use-before-define
     updateAllToDo();
   })
   projectButton.textContent = ProjectName.projectTitle;
   projectButton.setAttribute('id', `${ProjectName.projectTitle}`);
   projectAnchor.appendChild(projectButton);
 }
-
 
 // STATIC ELEMENTS
 function renderInitialForms() {
@@ -108,11 +83,12 @@ function renderInitialForms() {
   const projectFormSubmit = document.createElement('button');
   projectFormSubmit.setAttribute('type', 'submit');
   projectFormSubmit.classList.add('submitProjectBtn')
-  projectFormSubmit.textContent = '+';
+  projectFormSubmit.textContent = 'Add project';
 
   const projectFormReset = document.createElement('button');
   projectFormReset.setAttribute('type', 'reset');
-  projectFormReset.textContent = 'R';
+  projectFormReset.textContent = 'Clear';
+  projectFormReset.classList.add('resetProjectBtn');
 
   const projectInformationDelete = document.createElement('div');
   projectInformationDelete.textContent = 'Doubleclick to delete';
@@ -128,8 +104,6 @@ function renderInitialForms() {
   const taskForm = document.createElement('form');
   taskForm.classList.add('taskFormToggle');
   taskForm.style.display = 'none';
-  // form.setAttribute('method', 'post');
-  // form.setAttribute('action', '/submit');
 
   const titleTask = document.createElement('input');
   titleTask.required = true;
@@ -224,7 +198,6 @@ function addDropDown() {
     const option = document.createElement('option');
     option.textContent = arrayObject.projectTitle;
     selectProject.appendChild(option);
-
   })
 }
 
@@ -236,6 +209,7 @@ function updateProjectDOMDisplay() {
     createProject(arrayObject);
   })
 }
+
 function updateAllToDo() {
   const taskDisplay = document.querySelector('.taskDisplay');
   taskDisplay.innerHTML = '';
@@ -278,5 +252,4 @@ function updateProjectSpecificToDo() {
   })
 }
 
-
-export { updateProjectSpecificToDo, updateUpcomingToDo, updateTodayAllToDo, updateAllToDo, addToDoItemFromDOM, createTask, createProject, renderInitialForms, addDropDown, loadFromStorage, saveToStorage, updateProjectDOMDisplay };
+export { updateProjectSpecificToDo, updateUpcomingToDo, updateTodayAllToDo, updateAllToDo, addToDoItemFromDOM, createTask, createProject, renderInitialForms, addDropDown, updateProjectDOMDisplay };
