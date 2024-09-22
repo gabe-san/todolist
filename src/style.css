@@ -55,6 +55,7 @@ ul {
   width: 100vw;
   padding: 2rem;
   background-color: #36393e;
+  gap: 30px;
 }
 .navigation {
   display: flex;
@@ -100,7 +101,8 @@ ul {
   border: none;
 }
 .submitProjectBtn:active,
-.resetProjectBtn:active {
+.resetProjectBtn:active,
+.deleteTaskBtn:active {
   background-color: rgb(245, 40, 40);
 }
 
@@ -120,4 +122,68 @@ ul {
   font-size: 1rem;
   color: white;
   width: 19vw;
+}
+
+.add-task-btn {
+  color: white;
+  background-color: #1e2023;
+  border: none;
+  font-size: 1rem;
+  width: 30vw;
+  border-radius: 7px;
+}
+
+.add-task-btn:hover {
+  background-color: #3e3f42;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+}
+
+.taskFormToggle {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 5px;
+}
+.taskFormToggle input,
+.taskFormToggle select {
+  color: white;
+  background-color: #36393e;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid rgb(229, 231, 235, 0.2);
+}
+
+.submitTaskResetBtn,
+.resetTaskBtn {
+  color: white;
+  border: none;
+  font-size: 1rem;
+  background-color: rgb(245, 97, 97);
+  border-radius: 2px;
+  width: 10vw;
+}
+
+.taskDisplay {
+  display: flex;
+  padding: 10px;
+  color: white;
+  flex-flow: row wrap;
+  width: 75vw;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.deleteTaskBtn {
+  background-color: rgb(245, 97, 97);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 2px;
+  width: 4vw;
 }

@@ -30,6 +30,7 @@ function createTask(TaskItem) {
   project.textContent = TaskItem.project;
 
   const deleteButton = document.createElement('button');
+  deleteButton.classList.add('deleteTaskBtn');
   deleteButton.textContent = 'Delete';
   deleteButton.addEventListener('click', () => {
     taskItem.remove();
@@ -161,11 +162,12 @@ function renderInitialForms() {
   taskFormSubmit.setAttribute('id', 'submitTaskBtn');
   taskFormSubmit.setAttribute('type', 'submit');
   taskFormSubmit.classList.add('submitTaskResetBtn')
-  taskFormSubmit.innerText = '+';
+  taskFormSubmit.innerText = 'Submit';
 
   const taskFormReset = document.createElement('button');
   taskFormReset.setAttribute('type', 'reset');
-  taskFormReset.innerText = 'R';
+  taskFormReset.innerText = 'Clear';
+  taskFormReset.classList.add('resetTaskBtn');
 
   selectProjectList.appendChild(projectPlaceHolder);
   taskForm.appendChild(titleTask);
